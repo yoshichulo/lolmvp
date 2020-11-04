@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "lolmvp"
+    }
+  },
+  "defaultProject": "lolmvp",
+  "cli": {
+    "analytics": "ac4ff951-7140-4c4d-85ff-f24e6f9ea4fb"
+  }
 }

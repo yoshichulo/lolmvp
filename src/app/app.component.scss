@@ -1,0 +1,23 @@
+.logo {
+  max-width: 55%;
+  padding-bottom: 25px;
+}
+
+.searchbar-container {
+  max-width: 600px;
+  margin-top: 15%;
+}
+.searchbar {
+  font-size: 25px;
+  border-style: solid;
+  border-width: 3px;
+  border-color: #7e46bd;
+  height: 70px;
+  border-radius: 15px;
+  background-color: #150b2a;
+  color: white;
+}
+
+.searchbar-container::selection{
+  border: none;
+}
