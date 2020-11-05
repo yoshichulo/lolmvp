@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from '../../../environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-summoner',
@@ -10,20 +9,21 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SummonerComponent implements OnInit {
 
-  private summonerSearchURL = 'https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/';
-  constructor(private httpClient: HttpClient, private route: ActivatedRoute) { }
+  private summonerName = '';
+  private level = 1;
+  private iconId = 'placeHolder';
+  constructor(private data: DataService, private route: ActivatedRoute, ) { }
 
   ngOnInit(): void {
     this.fetchData();
   }
   fetchData(): void {
-    let headers = new HttpHeaders();
-    headers.append('X-Riot-Token', environment.riotApiKey);
-    headers.append('Access-Control-Allow-Origin', '*');
     const name = this.route.snapshot.paramMap.get('summonerName');
-    const data = this.httpClient.get(this.summonerSearchURL + name, {headers});
-    data.subscribe((d: any[]) => {
-      console.log(d);
+    const observer = this.data.getSummonerInfoByName(name).subscribe((d: any[]) => {
+      d = JSON.parse(JSON.stringify(d));
+      this.summonerName = d.name;
+      this.level = d.summonerLevel;
+      this.iconId = d.profileIconId.toString();
     });
   }
 

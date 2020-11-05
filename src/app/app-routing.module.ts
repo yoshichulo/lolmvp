@@ -11,7 +11,11 @@ const routes: Routes = [
   },
   {
     path: 'summoner/:summonerName',
-    component: SummonerComponent
+    component: SummonerComponent,
+  },
+  {
+    path: 'summoner/',
+    redirectTo: '/'
   }
 ];
 
